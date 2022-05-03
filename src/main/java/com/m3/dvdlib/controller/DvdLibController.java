@@ -7,6 +7,8 @@ import com.m3.dvdlib.ui.DvdLibView;
 import com.m3.dvdlib.ui.UserIO;
 import com.m3.dvdlib.ui.UserIOConsoleImpl;
 
+import java.util.List;
+
 public class DvdLibController {
     private UserIO ui = new UserIOConsoleImpl();
     private DvdLibView view = new DvdLibView();
@@ -24,8 +26,14 @@ public class DvdLibController {
                     createDvd();
                     break;
                 case 2:
+                    removeDvd();
+                case 3:
                     break;
-
+                case 4:
+                    listAllDvds();
+                    break;
+                case 5:
+                    showDvdInfo();
 
             }
 
@@ -39,6 +47,23 @@ public class DvdLibController {
         dao.addDvd(newDvd.getDvdId(), newDvd);  // storage in the map
         view.displayAddSuccessBanner();
     }
+
+    private void removeDvd() {
+        String dvdId = view.getDvdIdChoice();
+        dao.removeDvd(dvdId);
+    }
+
+    private void listAllDvds(){
+        List<Dvd> dvdList = dao.returnAllDvds();
+        view.displayDvdList(dvdList);
+    }
+
+    private void showDvdInfo(){
+        String idChoice = view.getDvdIdChoice();
+        Dvd currentDvd = dao.getDvdInfo(idChoice);
+        view.displayDvdInfo(currentDvd);
+    }
+
 
 }
 

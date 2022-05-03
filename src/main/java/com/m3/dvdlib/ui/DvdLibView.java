@@ -2,6 +2,8 @@ package com.m3.dvdlib.ui;
 
 import com.m3.dvdlib.dto.Dvd;
 
+import java.util.List;
+
 public class DvdLibView {
     private UserIO ui = new UserIOConsoleImpl();
 
@@ -26,7 +28,8 @@ public class DvdLibView {
         String directorName  = ui.readString("Please enter director name");
         String studioName  = ui.readString("Please enter studio name ");
         String userNote = ui.readString("Add user note ");
-        Dvd newDvd = new Dvd(dvdId,movieTitle,releaseDate,mPAArating,directorName,studioName);
+        Dvd newDvd = new Dvd(movieTitle,releaseDate,mPAArating,directorName,studioName);
+        newDvd.setDvdId(dvdId);
         newDvd.setUserNote(userNote);
         return newDvd;
     }
@@ -39,4 +42,33 @@ public class DvdLibView {
         ui.readString("DVD successfully added. Please hit enter to continue");
     }
 
+    public String getDvdIdChoice() {
+        return ui.readString("Please enter the Dvd ID.");
+    }
+
+    public void displayDvdList(List<Dvd> dvdList) {
+        for (Dvd currentDvd : dvdList) {
+            String dvdInfo = String.format("#%s : %s",
+                    currentDvd.getDvdId(),
+                    currentDvd.getTitle());
+            ui.print(dvdInfo);
+        }
+        ui.readString("Please hit enter to continue.");
+    }
+
+    public void displayDvdInfo(Dvd currentDvd){
+        if (currentDvd != null) {
+            ui.print(currentDvd.getTitle());
+            ui.print(currentDvd.getReleaseDate());
+            ui.print(currentDvd.getmPAArating());
+            ui.print(currentDvd.getDirectorName());
+            ui.print(currentDvd.getStudioName());
+            ui.print(currentDvd.getUserNote());
+        }
+        else {
+            ui.print("No such DVD in the database.");
+        }
+        ui.readString("Please hit enter to continue");
+
+    }
 }

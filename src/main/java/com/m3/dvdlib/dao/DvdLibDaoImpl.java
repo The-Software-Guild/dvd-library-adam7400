@@ -18,8 +18,9 @@ public class DvdLibDaoImpl implements DvdLibDao{
 
     @Override
     public Dvd removeDvd(String dvdId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return dvds.remove(dvdId);
     }
+
 
     @Override
     public Dvd editDvdInfo(String dvdId) {
@@ -27,14 +28,14 @@ public class DvdLibDaoImpl implements DvdLibDao{
     }
 
     @Override
-    public List<Dvd> listAllDvds() {
+    public List<Dvd> returnAllDvds() {
         return new ArrayList<Dvd>(dvds.values());
     }
 
 
     @Override
-    public Dvd displayDvdInfo(String dvdId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Dvd getDvdInfo(String dvdId) {
+        return dvds.get(dvdId);
     }
 
     @Override

@@ -10,8 +10,7 @@ public class Dvd {
     private String userNote;
 
 
-    public Dvd(String dvdId, String movieTitle, String releaseDate, String mPAArating, String directorName, String studioName){
-        this.dvdId = dvdId;
+    public Dvd(String movieTitle, String releaseDate, String mPAArating, String directorName, String studioName){
         this.movieTitle = movieTitle;
         this.releaseDate = releaseDate;
         this.mPAArating = mPAArating;
@@ -74,4 +73,9 @@ public class Dvd {
     public String getDvdId() {
         return dvdId;
     }
+
+    public void setDvdId(String dvdId) {
+        this.dvdId = dvdId;
+    }
 }
+

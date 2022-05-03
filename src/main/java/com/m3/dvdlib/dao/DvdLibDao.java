@@ -10,11 +10,12 @@ public interface DvdLibDao {
 
     Dvd removeDvd(String dvdId);
 
+
     Dvd editDvdInfo(String dvdId);
 
-    List<Dvd> listAllDvds();
+    List<Dvd> returnAllDvds();
 
-    Dvd displayDvdInfo(String dvdId);
+    Dvd getDvdInfo(String dvdId);
 
     Dvd searchDvdByTitle(String movieTitle);
 
