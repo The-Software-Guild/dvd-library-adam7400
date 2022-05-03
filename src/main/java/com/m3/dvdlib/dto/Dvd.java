@@ -1,7 +1,6 @@
 package com.m3.dvdlib.dto;
 
 public class Dvd {
-    private String dvdId;
     private String movieTitle;
     private String releaseDate;
     private String mPAArating;
@@ -16,10 +15,6 @@ public class Dvd {
         this.mPAArating = mPAArating;
         this.directorName = directorName;
         this.studioName = studioName;
-    }
-
-    public Dvd(String dvdId) {
-        this.dvdId = dvdId;
     }
 
     public void setUserNote(String userNote) {
@@ -70,12 +65,5 @@ public class Dvd {
         this.studioName = studioName;
     }
 
-    public String getDvdId() {
-        return dvdId;
-    }
-
-    public void setDvdId(String dvdId) {
-        this.dvdId = dvdId;
-    }
 }
 

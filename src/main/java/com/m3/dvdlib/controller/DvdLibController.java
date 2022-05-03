@@ -33,10 +33,9 @@ public class DvdLibController {
                     listAllDvds();
                     break;
                 case 5:
-                    showDvdInfo();
+                    printDvdInfo();
                     break;
                 case 6:
-                    searchDvdByTitle();
                     break;
                 case 7:
                     break;
@@ -49,33 +48,33 @@ public class DvdLibController {
         }
     }
 
-
     private void createDvd() {
+        view.addDvdBanner();
         Dvd newDvd = view.getNewDvdInfo();      // user input
         dao.addDvd(newDvd);  // storage in the map
+        view.addDvdMessage();
     }
 
     private void removeDvd() {
-        String dvdId = view.getDvdIdChoice();
-        dao.removeDvd(dvdId);
+        view.removeDvdBanner();
+        String dvdTitleChoice = view.getDvdTitleChoice();
+        dao.removeDvd(dvdTitleChoice);
+        view.removeDvdMessage();
     }
 
     private void listAllDvds(){
-        List<Dvd> dvdList = dao.returnAllDvds();
+        view.listDvdsBanner();
+        List<Dvd> dvdList = dao.listAllDvdTitles();
         view.displayDvdList(dvdList);
     }
 
-    private void showDvdInfo(){
-        String idChoice = view.getDvdIdChoice();
-        Dvd currentDvd = dao.getDvdInfo(idChoice);
-        view.displayDvdInfo(currentDvd);
+    private void printDvdInfo(){
+        view.dvdInfoBanner();
+        String movieTitle = view.getDvdTitleChoice();
+        Dvd currentDvd = dao.accessDvdInfo(movieTitle);
+        view.showDvdInfo(currentDvd);
     }
 
-    private void searchDvdByTitle(){
-        String titleChoice = view.getDvdTitleChoice();
-        Dvd currentDvd = dao.searchDvdByTitle(titleChoice);
-        view.displayDvdInfo(currentDvd);
-    }
 
 
 }

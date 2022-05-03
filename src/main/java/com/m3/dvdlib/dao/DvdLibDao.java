@@ -8,15 +8,12 @@ public interface DvdLibDao {
 
     void addDvd(Dvd dvd);
 
-    Dvd removeDvd(String dvdId);
+    Dvd removeDvd(String movieTitle);
 
-    Dvd editDvdInfo(String dvdId);
+    List<Dvd> listAllDvdTitles();
 
-    List<Dvd> returnAllDvds();
+    Dvd accessDvdInfo(String movieTitle);
 
-    Dvd getDvdInfo(String dvdId);
-
-    Dvd searchDvdByTitle(String movieTitle);
 
 
 
