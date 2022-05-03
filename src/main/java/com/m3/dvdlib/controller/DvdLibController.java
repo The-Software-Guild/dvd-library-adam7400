@@ -14,14 +14,14 @@ public class DvdLibController {
     private DvdLibView view = new DvdLibView();
     private DvdLibDao dao = new DvdLibDaoImpl();
 
-    public void run(){
+    public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
 
-        while(keepGoing){
+        while (keepGoing) {
             menuSelection = view.printMenuAndGetSelection();
 
-            switch(menuSelection){
+            switch (menuSelection) {
                 case 1:
                     createDvd();
                     break;
@@ -63,45 +63,32 @@ public class DvdLibController {
         view.removeDvdMessage();
     }
 
-    private void listAllDvds(){
-        view.listDvdsBanner();
-        List<Dvd> dvdList = dao.listAllDvdTitles();
-        view.displayDvdList(dvdList);
-    }
-
-    private void printDvdInfo(){
-        view.dvdInfoBanner();
-        String movieTitle = view.getDvdTitleChoice();
-        Dvd currentDvd = dao.accessDvdInfo(movieTitle);
-        view.showDvdInfo(currentDvd);
-    }
-
-    private void editDvdInfo(){
+    private void editDvdInfo() {
         boolean keepGoing = true;
         String movieTitle = view.getDvdTitleChoice();
         Dvd dvd = dao.accessDvdInfo(movieTitle);
 
-        while(keepGoing) {
-            int selection = view.printEditDvdInfoMenu(dvd);
-            String value = view.getValueChange();
+        while (keepGoing) {
+            int selection = view.printEditDvdInfoMenu();
+            String newEntry = view.getNewEntry();
             switch (selection) {
                 case 1:
-                    dvd.setMovieTitle(value);
+                    dvd.setMovieTitle(newEntry);
                     break;
                 case 2:
-                    dvd.setReleaseDate(value);
+                    dvd.setReleaseDate(newEntry);
                     break;
                 case 3:
-                    dvd.setmPAArating(value);
+                    dvd.setmPAArating(newEntry);
                     break;
                 case 4:
-                    dvd.setDirectorName(value);
+                    dvd.setDirectorName(newEntry);
                     break;
                 case 5:
-                    dvd.setStudioName(value);
+                    dvd.setStudioName(newEntry);
                     break;
                 case 6:
-                    dvd.setUserNote(value);
+                    dvd.setUserNote(newEntry);
                     break;
                 case 7:
                     keepGoing = false;
@@ -109,9 +96,22 @@ public class DvdLibController {
             }
         }
 
-        }
-
     }
+
+    private void listAllDvds() {
+        view.listDvdsBanner();
+        List<Dvd> dvdList = dao.listAllDvdTitles();
+        view.displayDvdList(dvdList);
+    }
+
+    private void printDvdInfo() {
+        view.dvdInfoBanner();
+        String movieTitle = view.getDvdTitleChoice();
+        Dvd currentDvd = dao.accessDvdInfo(movieTitle);
+        view.showDvdInfo(currentDvd);
+    }
+
+}
 
 
 

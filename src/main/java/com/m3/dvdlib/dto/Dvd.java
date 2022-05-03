@@ -9,7 +9,7 @@ public class Dvd {
     private String userNote;
 
 
-    public Dvd(String movieTitle, String releaseDate, String mPAArating, String directorName, String studioName){
+    public Dvd(String movieTitle, String releaseDate, String mPAArating, String directorName, String studioName) {
         this.movieTitle = movieTitle;
         this.releaseDate = releaseDate;
         this.mPAArating = mPAArating;
@@ -17,11 +17,7 @@ public class Dvd {
         this.studioName = studioName;
     }
 
-    public void setUserNote(String userNote) {
-        this.userNote = userNote;
-    }
-
-    public String getTitle() {
+    public String getMovieTitle() {
         return movieTitle;
     }
 
@@ -63,6 +59,10 @@ public class Dvd {
 
     public void setStudioName(String studioName) {
         this.studioName = studioName;
+    }
+
+    public void setUserNote(String userNote) {
+        this.userNote = userNote;
     }
 
 }

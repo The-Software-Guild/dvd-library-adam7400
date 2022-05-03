@@ -6,13 +6,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
 
-public class DvdLibDaoImpl implements DvdLibDao{
+public class DvdLibDaoImpl implements DvdLibDao {
 
     private Map<String, Dvd> dvds = new HashMap<>(); // map for searching dvd by title
 
     @Override
     public void addDvd(Dvd dvd) {
-        dvds.put(dvd.getTitle(), dvd); // key is title
+        dvds.put(dvd.getMovieTitle(), dvd); // key is title
     }
 
     @Override
@@ -29,7 +29,6 @@ public class DvdLibDaoImpl implements DvdLibDao{
     public Dvd accessDvdInfo(String movieTitle) {
         return dvds.get(movieTitle);
     }
-
 
 
 }

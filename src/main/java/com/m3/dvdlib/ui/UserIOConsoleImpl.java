@@ -1,14 +1,16 @@
 /*********************************
-* The Software Guild
-* Copyright (C) 2020 Wiley edu LLC - All Rights Reserved
-*********************************/
+ * The Software Guild
+ * Copyright (C) 2020 Wiley edu LLC - All Rights Reserved
+ *********************************/
 package com.m3.dvdlib.ui;
 
 /**
  * TSG Official Implementation of the UserIO interface
  * May your view be ever in your favor!
+ *
  * @author ahill
  */
+
 import com.m3.dvdlib.ui.UserIO;
 
 import java.io.BufferedReader;

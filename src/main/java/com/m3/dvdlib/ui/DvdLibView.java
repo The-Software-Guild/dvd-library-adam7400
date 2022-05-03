@@ -7,7 +7,7 @@ import java.util.List;
 public class DvdLibView {
     private UserIO ui = new UserIOConsoleImpl();
 
-    public int printMenuAndGetSelection(){
+    public int printMenuAndGetSelection() {
         ui.print("1. Add DVD");
         ui.print("2. Remove DVD");
         ui.print("3. Edit DVD info");
@@ -16,53 +16,27 @@ public class DvdLibView {
         // ui.print("7. Load DVD library from a file");
         ui.print("8. Exit");
 
-        return ui.readInt("Please choose from above: ",1, 8);
+        return ui.readInt("Please choose from above: ", 1, 8);
     }
 
-    public String getDvdTitleChoice(){
+    public String getDvdTitleChoice() {
         return ui.readString("Please enter the DVD title");
     }
-    public String getValueChange(){
-        return ui.readString("Please enter the string to replace the value");
-    }
+
 
     public Dvd getNewDvdInfo() {
         String movieTitle = ui.readString("Please enter movie title");
         String releaseDate = ui.readString("Please enter release date");
         String mPAArating = ui.readString("Please enter MPAA rating");
-        String directorName  = ui.readString("Please enter director name");
-        String studioName  = ui.readString("Please enter studio name ");
+        String directorName = ui.readString("Please enter director name");
+        String studioName = ui.readString("Please enter studio name ");
         String userNote = ui.readString("Add user note ");
-        Dvd newDvd = new Dvd(movieTitle,releaseDate,mPAArating,directorName,studioName);
+        Dvd newDvd = new Dvd(movieTitle, releaseDate, mPAArating, directorName, studioName);
         newDvd.setUserNote(userNote);
         return newDvd;
     }
 
-    public void displayDvdList(List<Dvd> dvdList) {
-        for (Dvd currentDvd : dvdList) {
-            String dvdInfo = String.format("%s",
-                    currentDvd.getTitle());
-            ui.print(dvdInfo);
-        }
-        ui.readString("Please hit enter to continue.");
-    }
-
-    public void showDvdInfo(Dvd currentDvd){
-        if (currentDvd != null) {
-            ui.print(currentDvd.getTitle());
-            ui.print(currentDvd.getReleaseDate());
-            ui.print(currentDvd.getmPAArating());
-            ui.print(currentDvd.getDirectorName());
-            ui.print(currentDvd.getStudioName());
-            ui.print(currentDvd.getUserNote());
-        }
-        else {
-            ui.print("No such DVD in the database.");
-        }
-        ui.readString("Please hit enter to continue");
-    }
-
-    public int printEditDvdInfoMenu(Dvd currentDvd){
+    public int printEditDvdInfoMenu() {
         ui.print("*** EDIT DVD INFO ***");
         ui.print("1. Title");
         ui.print("2. Release date");
@@ -71,34 +45,66 @@ public class DvdLibView {
         ui.print("5. Studio name");
         ui.print("6. User note");
         ui.print("7. Exit");
-        return ui.readInt("Please choose from above: ",1, 7);
+        return ui.readInt("Please choose from above: ", 1, 7);
     }
 
-    public void addDvdBanner(){
+    public String getNewEntry() {
+        return ui.readString("Please type in the new entry: ");
+    }
+
+    public void displayDvdList(List<Dvd> dvdList) {
+        for (Dvd currentDvd : dvdList) {
+            String dvdInfo = String.format("%s",
+                    currentDvd.getMovieTitle());
+            ui.print(dvdInfo);
+        }
+        ui.readString("Please hit enter to continue.");
+    }
+
+    public void showDvdInfo(Dvd currentDvd) {
+        if (currentDvd != null) {
+            ui.print(currentDvd.getMovieTitle());
+            ui.print(currentDvd.getReleaseDate());
+            ui.print(currentDvd.getmPAArating());
+            ui.print(currentDvd.getDirectorName());
+            ui.print(currentDvd.getStudioName());
+            ui.print(currentDvd.getUserNote());
+        } else {
+            ui.print("No such DVD in the database.");
+        }
+        ui.readString("Please hit enter to continue.");
+    }
+
+
+    // BANNERS AND SUCCESS MESSAGES
+
+    public void addDvdBanner() {
         ui.print("*** ADDING DVD ***");
     }
 
-    public void addDvdMessage(){
-        ui.print("*****");
-        ui.print("The DVD has been successfully added to the database");
-        ui.print("*****");
-    }
-
-    public void removeDvdBanner(){
+    public void removeDvdBanner() {
         ui.print("*** REMOVING DVD ***");
     }
 
-    public void removeDvdMessage(){
-        ui.print("*****");
-        ui.print("The DVD has been successfully removed from the database");
-        ui.print("*****");
-    }
-
-    public void listDvdsBanner(){
+    public void listDvdsBanner() {
         ui.print("*** DVD LIST ***");
     }
 
-    public void dvdInfoBanner(){
+    public void dvdInfoBanner() {
         ui.print("*** DVD INFO ***");
     }
+
+    public void addDvdMessage() {
+        ui.print("*****");
+        ui.print("The DVD has been successfully added to the database.");
+        ui.print("*****");
+    }
+
+    public void removeDvdMessage() {
+        ui.print("*****");
+        ui.print("The DVD has been successfully removed from the database.");
+        ui.print("*****");
+    }
+
+
 }
