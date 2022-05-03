@@ -28,6 +28,7 @@ public class DvdLibController {
                 case 2:
                     removeDvd();
                 case 3:
+                    editDvdInfo();
                     break;
                 case 4:
                     listAllDvds();
@@ -75,7 +76,45 @@ public class DvdLibController {
         view.showDvdInfo(currentDvd);
     }
 
+    private void editDvdInfo(){
+        boolean keepGoing = true;
+        String movieTitle = view.getDvdTitleChoice();
+        Dvd dvd = dao.accessDvdInfo(movieTitle);
+
+        while(keepGoing) {
+            int selection = view.printEditDvdInfoMenu(dvd);
+            String value = view.getValueChange();
+            switch (selection) {
+                case 1:
+                    dvd.setMovieTitle(value);
+                    break;
+                case 2:
+                    dvd.setReleaseDate(value);
+                    break;
+                case 3:
+                    dvd.setmPAArating(value);
+                    break;
+                case 4:
+                    dvd.setDirectorName(value);
+                    break;
+                case 5:
+                    dvd.setStudioName(value);
+                    break;
+                case 6:
+                    dvd.setUserNote(value);
+                    break;
+                case 7:
+                    keepGoing = false;
+                    break;
+            }
+        }
+
+        }
+
+    }
 
 
-}
+
+
+
 

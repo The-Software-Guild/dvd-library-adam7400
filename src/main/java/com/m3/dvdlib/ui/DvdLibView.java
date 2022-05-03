@@ -22,6 +22,9 @@ public class DvdLibView {
     public String getDvdTitleChoice(){
         return ui.readString("Please enter the DVD title");
     }
+    public String getValueChange(){
+        return ui.readString("Please enter the string to replace the value");
+    }
 
     public Dvd getNewDvdInfo() {
         String movieTitle = ui.readString("Please enter movie title");
@@ -59,18 +62,17 @@ public class DvdLibView {
         ui.readString("Please hit enter to continue");
     }
 
-    public int editDvdInfoMenu(Dvd currentDvd){
-        ui.print("*** EDIT DVD INFO");
+    public int printEditDvdInfoMenu(Dvd currentDvd){
+        ui.print("*** EDIT DVD INFO ***");
         ui.print("1. Title");
         ui.print("2. Release date");
         ui.print("3. MPAA rating");
         ui.print("4. Director");
         ui.print("5. Studio name");
         ui.print("6. User note");
-        return ui.readInt("Please choose from above: ",1, 8);
+        ui.print("7. Exit");
+        return ui.readInt("Please choose from above: ",1, 7);
     }
-
-
 
     public void addDvdBanner(){
         ui.print("*** ADDING DVD ***");
