@@ -2,18 +2,19 @@ package com.m3.dvdlib.dao;
 
 import com.m3.dvdlib.dto.Dvd;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.*;
 
 public class DvdLibDaoImpl implements DvdLibDao{
 
     private Map<String, Dvd> dvds = new HashMap<>();
+    private Map<String, Dvd> dvds2 = new HashMap<>(); // map for searching dvd by title
 
     @Override
-    public Dvd addDvd(String dvdId, Dvd dvd) {
-        return dvds.put(dvdId, dvd);
+    public void addDvd(Dvd dvd) {
+        dvds.put(dvd.getDvdId(), dvd);  // key is id
+        dvds2.put(dvd.getTitle(), dvd); // key is title
     }
 
     @Override
@@ -32,7 +33,6 @@ public class DvdLibDaoImpl implements DvdLibDao{
         return new ArrayList<Dvd>(dvds.values());
     }
 
-
     @Override
     public Dvd getDvdInfo(String dvdId) {
         return dvds.get(dvdId);
@@ -40,6 +40,8 @@ public class DvdLibDaoImpl implements DvdLibDao{
 
     @Override
     public Dvd searchDvdByTitle(String movieTitle) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return dvds2.get(movieTitle);
     }
+
+
 }

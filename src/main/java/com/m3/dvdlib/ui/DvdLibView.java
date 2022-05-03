@@ -14,7 +14,7 @@ public class DvdLibView {
         ui.print("4. List DVDs");
         ui.print("5. Display DVD information");
         ui.print("6. Search DVD by movie title");
-        ui.print("7. Load DVD library from a file");
+        // ui.print("7. Load DVD library from a file");
         ui.print("8. Exit");
 
         return ui.readInt("Please choose from above: ",1, 8);
@@ -34,16 +34,13 @@ public class DvdLibView {
         return newDvd;
     }
 
-    public void displayAddDVDBanner() {
-        ui.print("=== Add DVD ===");
-    }
-
-    public void displayAddSuccessBanner() {
-        ui.readString("DVD successfully added. Please hit enter to continue");
-    }
 
     public String getDvdIdChoice() {
         return ui.readString("Please enter the Dvd ID.");
+    }
+
+    public String getDvdTitleChoice(){
+        return ui.readString("Please enter the DVD title.");
     }
 
     public void displayDvdList(List<Dvd> dvdList) {

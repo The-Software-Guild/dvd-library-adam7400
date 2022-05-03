@@ -6,10 +6,9 @@ import java.util.List;
 
 public interface DvdLibDao {
 
-    Dvd addDvd(String dvdId, Dvd dvd);
+    void addDvd(Dvd dvd);
 
     Dvd removeDvd(String dvdId);
-
 
     Dvd editDvdInfo(String dvdId);
 
@@ -19,7 +18,7 @@ public interface DvdLibDao {
 
     Dvd searchDvdByTitle(String movieTitle);
 
-    // some file import method?
+
 
 
 }

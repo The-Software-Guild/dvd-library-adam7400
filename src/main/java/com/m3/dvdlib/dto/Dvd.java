@@ -21,7 +21,7 @@ public class Dvd {
     public Dvd(String dvdId) {
         this.dvdId = dvdId;
     }
-    
+
     public void setUserNote(String userNote) {
         this.userNote = userNote;
     }

@@ -34,6 +34,15 @@ public class DvdLibController {
                     break;
                 case 5:
                     showDvdInfo();
+                    break;
+                case 6:
+                    searchDvdByTitle();
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    keepGoing = false;
+                    break;
 
             }
 
@@ -42,10 +51,8 @@ public class DvdLibController {
 
 
     private void createDvd() {
-        view.displayAddDVDBanner();
         Dvd newDvd = view.getNewDvdInfo();      // user input
-        dao.addDvd(newDvd.getDvdId(), newDvd);  // storage in the map
-        view.displayAddSuccessBanner();
+        dao.addDvd(newDvd);  // storage in the map
     }
 
     private void removeDvd() {
@@ -61,6 +68,12 @@ public class DvdLibController {
     private void showDvdInfo(){
         String idChoice = view.getDvdIdChoice();
         Dvd currentDvd = dao.getDvdInfo(idChoice);
+        view.displayDvdInfo(currentDvd);
+    }
+
+    private void searchDvdByTitle(){
+        String titleChoice = view.getDvdTitleChoice();
+        Dvd currentDvd = dao.searchDvdByTitle(titleChoice);
         view.displayDvdInfo(currentDvd);
     }
 

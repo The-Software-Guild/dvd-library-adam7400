@@ -11,6 +11,8 @@ package com.m3.dvdlib.ui;
  */
 import com.m3.dvdlib.ui.UserIO;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class UserIOConsoleImpl implements UserIO {
