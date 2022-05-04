@@ -8,6 +8,7 @@ import com.m3.dvdlib.ui.UserIO;
 import com.m3.dvdlib.ui.UserIOConsoleImpl;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class DvdLibController {
     private UserIO ui = new UserIOConsoleImpl();
@@ -38,6 +39,7 @@ public class DvdLibController {
                     listAllDvds();
                     break;
                 case 6:
+                    readFromFile();
                     break;
                 case 7:
                     keepGoing = false;
@@ -126,6 +128,21 @@ public class DvdLibController {
         String movieTitle = view.getDvdTitleChoice();
         Dvd currentDvd = dao.accessDvdInfo(movieTitle);
         view.showDvdInfo(currentDvd);
+    }
+
+    private void readFromFile(){
+        Scanner scanner = ui.readFile("movieDb.txt");
+        while (scanner.hasNextLine()) {
+            String movieTitle = scanner.nextLine();
+            String releaseDate = scanner.nextLine();
+            String mPAArating = scanner.nextLine();
+            String directorName = scanner.nextLine();
+            String studioName = scanner.nextLine();
+            Dvd newDvd = new Dvd(movieTitle, releaseDate, mPAArating, directorName, studioName);
+            dao.addDvd(newDvd);
+        }
+
+
     }
 
     private Boolean isInDbCheck(Dvd oldDvd) {

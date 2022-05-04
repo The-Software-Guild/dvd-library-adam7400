@@ -126,18 +126,14 @@ public class UserIOConsoleImpl implements UserIO {
     }
 
     @Override
-    public void readFile(){
+    public Scanner readFile(String fileName) {
         try {
-            Scanner sc = new Scanner(new BufferedReader(new FileReader("mvieDb.txt")));
-            while (sc.hasNextLine()) {
-                String currentLine = sc.nextLine();
-                System.out.println(currentLine);
-            }
-        }
-        catch(IOException e){
+            Scanner sc = new Scanner(new BufferedReader(new FileReader(fileName)));
+            return sc;
+        } catch (IOException e) {
             System.out.println("File not found");
         }
-
-
+        return null;
     }
+
 }

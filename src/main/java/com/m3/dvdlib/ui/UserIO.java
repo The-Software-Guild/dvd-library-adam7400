@@ -1,5 +1,7 @@
 package com.m3.dvdlib.ui;
 
+import java.util.Scanner;
+
 public interface UserIO {
     void print(String msg);
 
@@ -21,7 +23,7 @@ public interface UserIO {
 
     String readString(String prompt);
 
-    void readFile();
+    Scanner readFile(String fileName);
 
 
 

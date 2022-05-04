@@ -16,7 +16,7 @@ public class DvdLibView {
         ui.print("3. Display DVD information");
         ui.print("4. Edit DVD info");
         ui.print("5. List DVDs");
-        // ui.print("6. Load DVD library from a file");
+        ui.print("6. Load DVD library from a file");
         ui.print("7. Exit");
 
         return ui.readInt("Please choose from above: ", 1, 8);
