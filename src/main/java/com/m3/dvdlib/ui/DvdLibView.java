@@ -9,18 +9,19 @@ public class DvdLibView {
     private UserIO ui = new UserIOConsoleImpl();
 
     public int printMenuAndGetSelection() {
+        ui.print("\n");
         printStars();
         ui.print("DVD LIBRARY");
         printStars();
         ui.print("1. Add DVD");
         ui.print("2. Remove DVD");
         ui.print("3. Display DVD information");
-        ui.print("4. Edit DVD info");
+        ui.print("4. Edit DVD information");
         ui.print("5. List DVDs");
         ui.print("6. Load DVD library from a file");
         ui.print("7. Exit");
 
-        return ui.readInt("Please choose from above: ", 1, 8);
+        return ui.readInt("Please choose from the menu: ", 1, 7);
     }
 
     public void goodbyeMessage(){
@@ -33,12 +34,12 @@ public class DvdLibView {
 
 
     public Dvd getNewDvdInfo() {
-        String movieTitle = ui.readString("Please enter movie title");
-        String releaseDate = ui.readString("Please enter release date");
-        String mPAArating = ui.readString("Please enter MPAA rating");
-        String directorName = ui.readString("Please enter director name");
-        String studioName = ui.readString("Please enter studio name ");
-        String userNote = ui.readString("Add user note ");
+        String movieTitle = ui.readString("Please enter movie title:");
+        String releaseDate = ui.readString("Please enter release date:");
+        String mPAArating = ui.readString("Please enter MPAA rating:");
+        String directorName = ui.readString("Please enter director name:");
+        String studioName = ui.readString("Please enter studio name:");
+        String userNote = ui.readString("Add user note:");
         Dvd newDvd = new Dvd(movieTitle, releaseDate, mPAArating, directorName, studioName);
         newDvd.setUserNote(userNote);
         return newDvd;
@@ -110,7 +111,7 @@ public class DvdLibView {
 
     public void removeDvdMessage(Boolean isInDb) {
         if (isInDb) {
-            ui.print("\n*** REMOVAL SUCCESS ***");
+            ui.print("\n*** DVD REMOVED ***");
             hitEnterMessage();
         }
         else {
