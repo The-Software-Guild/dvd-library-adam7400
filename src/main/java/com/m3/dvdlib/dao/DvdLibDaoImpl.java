@@ -1,6 +1,7 @@
 package com.m3.dvdlib.dao;
 
 import com.m3.dvdlib.dto.Dvd;
+import org.apache.commons.collections4.list.TreeList;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -22,13 +23,15 @@ public class DvdLibDaoImpl implements DvdLibDao {
 
     @Override
     public List<Dvd> listAllDvdTitles() {
-        return new ArrayList<Dvd>(dvds.values());
+        return new TreeList<Dvd>(dvds.values());
     }
 
     @Override
     public Dvd accessDvdInfo(String movieTitle) {
         return dvds.get(movieTitle);
     }
+
+
 
 
 }

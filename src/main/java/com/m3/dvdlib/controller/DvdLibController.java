@@ -109,12 +109,10 @@ public class DvdLibController {
                         break;
                 }
             }
-        }
-        else {
+        } else {
             view.notInDbMessage();
         }
     }
-
 
 
     private void listAllDvds() {
@@ -130,7 +128,7 @@ public class DvdLibController {
         view.showDvdInfo(currentDvd);
     }
 
-    private Boolean isInDbCheck(Dvd oldDvd){
+    private Boolean isInDbCheck(Dvd oldDvd) {
         return oldDvd != null;
     }
 
