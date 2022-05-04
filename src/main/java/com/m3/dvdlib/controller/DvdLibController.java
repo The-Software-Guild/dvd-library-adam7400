@@ -145,7 +145,7 @@ public class DvdLibController {
         view.libraryLoadedMessage();
     }
 
-    private Boolean isInDbCheck(Dvd oldDvd) {
+    private Boolean isInDbCheck(Dvd oldDvd) { // should this one belong to dao?
         return oldDvd != null;
     }
 
