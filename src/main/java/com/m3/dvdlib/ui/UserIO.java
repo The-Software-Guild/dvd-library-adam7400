@@ -21,6 +21,8 @@ public interface UserIO {
 
     String readString(String prompt);
 
+    void readFile();
+
 
 
 }

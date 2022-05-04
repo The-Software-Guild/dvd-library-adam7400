@@ -14,7 +14,9 @@ package com.m3.dvdlib.ui;
 import com.m3.dvdlib.ui.UserIO;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class UserIOConsoleImpl implements UserIO {
@@ -123,4 +125,19 @@ public class UserIOConsoleImpl implements UserIO {
         return result;
     }
 
+    @Override
+    public void readFile(){
+        try {
+            Scanner sc = new Scanner(new BufferedReader(new FileReader("movieDb.txt")));
+            while (sc.hasNextLine()) {
+                String currentLine = sc.nextLine();
+                System.out.println(currentLine);
+            }
+        }
+        catch(IOException e){
+            System.out.println("File not found");
+        }
+
+
+    }
 }
