@@ -125,9 +125,10 @@ public class DvdLibController {
 
     private void printDvdInfo() {
         view.dvdInfoBanner();
-        String movieTitle = view.getDvdTitleChoice();
-        Dvd currentDvd = dao.accessDvdInfo(movieTitle);
-        view.showDvdInfo(currentDvd);
+        String dvdTitleChoice = view.getDvdTitleChoice();
+        Dvd currentDvd = dao.accessDvdInfo(dvdTitleChoice);
+        Boolean isInDb = isInDbCheck(currentDvd);
+        view.showDvdInfo(currentDvd, isInDb);
     }
 
     private void readFromFile(){
@@ -141,6 +142,7 @@ public class DvdLibController {
             Dvd newDvd = new Dvd(movieTitle, releaseDate, mPAArating, directorName, studioName);
             dao.addDvd(newDvd);
         }
+        view.libraryLoadedMessage();
     }
 
     private Boolean isInDbCheck(Dvd oldDvd) {

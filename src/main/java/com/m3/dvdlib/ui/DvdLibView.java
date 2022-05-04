@@ -28,11 +28,6 @@ public class DvdLibView {
         ui.print("\n*** GOODBYE ***");
     }
 
-    public String getDvdTitleChoice() {
-        return ui.readString("Please enter the DVD title");
-    }
-
-
     public Dvd getNewDvdInfo() {
         String movieTitle = ui.readString("Please enter movie title:");
         String releaseDate = ui.readString("Please enter release date:");
@@ -45,6 +40,18 @@ public class DvdLibView {
         return newDvd;
     }
 
+    public String getDvdTitleChoice() {
+        return ui.readString("Please enter the DVD title");
+    }
+
+    public void showDvdInfo(Dvd currentDvd, Boolean isInDb) {
+        if (isInDb) {
+            ui.print(currentDvd.toString());
+            hitEnterMessage();
+        } else {
+            notInDbMessage();
+        }
+    }
     public int printEditDvdInfoMenu() {
         ui.print("*** EDITING MODE ***");
         ui.print("1. Title");
@@ -62,25 +69,19 @@ public class DvdLibView {
     }
 
     public void displayDvdList(List<Dvd> dvdList) {
-        for (Dvd currentDvd : dvdList) {
-            String dvdInfo = String.format("%s",
-                    currentDvd.getMovieTitle());
-            ui.print(dvdInfo);
+        if(!dvdList.isEmpty()) {
+            for (Dvd currentDvd : dvdList) {
+                ui.print(currentDvd.getMovieTitle());
+            }
+        }
+        else{
+            ui.print("Library is empty");
         }
         hitEnterMessage();
     }
 
-    public void showDvdInfo(Dvd currentDvd) {
-        if (currentDvd != null) {
-            ui.print(currentDvd.toString());
-        } else {
-            ui.print("No such DVD in the database.");
-        }
-        hitEnterMessage();
-    }
 
-    // BANNERS AND SUCCESS MESSAGES
-
+    // BANNERS AND MESSAGES
     public void addDvdBanner() {
         ui.print("\n*** ADDING DVD ***");
     }
@@ -100,7 +101,7 @@ public class DvdLibView {
     public void addDvdMessage(Boolean isInDb) {
 
         if (!isInDb) {
-            ui.print("\n*** UPLOAD SUCCESS ***");
+            ui.print("\n*** DVD WAS ADDED ***");
         }
         else {
             ui.print("\n*** ALREADY UP ***");
@@ -127,6 +128,11 @@ public class DvdLibView {
 
     public void editSuccessMessage(){
         ui.print("\n*** EDIT SUCCESS ***");
+        hitEnterMessage();
+    }
+
+    public void libraryLoadedMessage(){
+        ui.print("\n*** LIBRARY LOADED ***");
         hitEnterMessage();
     }
 
