@@ -1,5 +1,7 @@
 package com.m3.dvdlib.dto;
 
+import java.util.Objects;
+
 public class Dvd {
     private String movieTitle;
     private String releaseDate;
@@ -65,5 +67,28 @@ public class Dvd {
         this.userNote = userNote;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dvd dvd = (Dvd) o;
+        return Objects.equals(movieTitle, dvd.movieTitle) &&
+                Objects.equals(releaseDate, dvd.releaseDate) &&
+                Objects.equals(mPAArating, dvd.mPAArating) &&
+                Objects.equals(directorName, dvd.directorName) &&
+                Objects.equals(studioName, dvd.studioName);
+    }
+
+    @Override
+    public String toString() {
+        return "Dvd{" +
+                "movieTitle='" + movieTitle + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", mPAArating='" + mPAArating + '\'' +
+                ", directorName='" + directorName + '\'' +
+                ", studioName='" + studioName + '\'' +
+                ", userNote='" + userNote + '\'' +
+                '}';
+    }
 }
 

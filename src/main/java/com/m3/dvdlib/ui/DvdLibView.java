@@ -63,12 +63,7 @@ public class DvdLibView {
 
     public void showDvdInfo(Dvd currentDvd) {
         if (currentDvd != null) {
-            ui.print(currentDvd.getMovieTitle());
-            ui.print(currentDvd.getReleaseDate());
-            ui.print(currentDvd.getmPAArating());
-            ui.print(currentDvd.getDirectorName());
-            ui.print(currentDvd.getStudioName());
-            ui.print(currentDvd.getUserNote());
+            ui.print(currentDvd.toString());
         } else {
             ui.print("No such DVD in the database.");
         }
@@ -94,9 +89,14 @@ public class DvdLibView {
         ui.print("*** DVD INFO ***");
     }
 
-    public void addDvdMessage() {
+    public void addDvdMessage(Boolean isInDb) {
         ui.print("*****");
-        ui.print("The DVD has been successfully added to the database.");
+        if (!isInDb) {
+            ui.print("The DVD has been successfully added to the database.");
+        }
+        else {
+            ui.print("The DVD is already on the database.");
+        }
         ui.print("*****");
     }
 

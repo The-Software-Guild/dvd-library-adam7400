@@ -51,9 +51,11 @@ public class DvdLibController {
 
     private void createDvd() {
         view.addDvdBanner();
-        Dvd newDvd = view.getNewDvdInfo();      // user input
-        dao.addDvd(newDvd);  // storage in the map
-        view.addDvdMessage();
+        Dvd newDvd = view.getNewDvdInfo();
+        Dvd oldDvd = dao.accessDvdInfo(newDvd.getMovieTitle());
+        Boolean isInDb = newDvd.equals(oldDvd);
+        if (!isInDb) dao.addDvd(newDvd);
+        view.addDvdMessage(isInDb);
     }
 
     private void removeDvd() {
