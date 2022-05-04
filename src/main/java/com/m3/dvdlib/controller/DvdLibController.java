@@ -23,24 +23,23 @@ public class DvdLibController {
 
             switch (menuSelection) {
                 case 1:
-                    createDvd();
+                    addDvd();
                     break;
                 case 2:
                     removeDvd();
+                    break;
                 case 3:
-                    editDvdInfo();
+                    printDvdInfo();
                     break;
                 case 4:
-                    listAllDvds();
+                    editDvdInfo();
                     break;
                 case 5:
-                    printDvdInfo();
+                    listAllDvds();
                     break;
                 case 6:
                     break;
                 case 7:
-                    break;
-                case 8:
                     keepGoing = false;
                     break;
 
@@ -49,7 +48,7 @@ public class DvdLibController {
         }
     }
 
-    private void createDvd() {
+    private void addDvd() {
         view.addDvdBanner();
         Dvd newDvd = view.getNewDvdInfo();
         Dvd oldDvd = dao.accessDvdInfo(newDvd.getMovieTitle());
@@ -61,44 +60,50 @@ public class DvdLibController {
     private void removeDvd() {
         view.removeDvdBanner();
         String dvdTitleChoice = view.getDvdTitleChoice();
-        dao.removeDvd(dvdTitleChoice);
-        view.removeDvdMessage();
+        Dvd oldDvd = dao.accessDvdInfo(dvdTitleChoice);
+        Boolean isInDb = isInDbCheck(oldDvd);
+        if (isInDb) dao.removeDvd(dvdTitleChoice);
+        view.removeDvdMessage(isInDb);
     }
 
     private void editDvdInfo() {
-        boolean keepGoing = true;
-        String movieTitle = view.getDvdTitleChoice();
-        Dvd dvd = dao.accessDvdInfo(movieTitle);
-
-        while (keepGoing) {
-            int selection = view.printEditDvdInfoMenu();
-            String newEntry = view.getNewEntry();
-            switch (selection) {
-                case 1:
-                    dvd.setMovieTitle(newEntry);
-                    break;
-                case 2:
-                    dvd.setReleaseDate(newEntry);
-                    break;
-                case 3:
-                    dvd.setmPAArating(newEntry);
-                    break;
-                case 4:
-                    dvd.setDirectorName(newEntry);
-                    break;
-                case 5:
-                    dvd.setStudioName(newEntry);
-                    break;
-                case 6:
-                    dvd.setUserNote(newEntry);
-                    break;
-                case 7:
-                    keepGoing = false;
-                    break;
+        Boolean keepGoing = true;
+        String dvdTitleChoice = view.getDvdTitleChoice();
+        Dvd oldDvd = dao.accessDvdInfo(dvdTitleChoice);
+        Boolean isInDb = isInDbCheck(oldDvd);
+        if (isInDb) {
+            while (keepGoing) {
+                int selection = view.printEditDvdInfoMenu();
+                String newEntry = view.getNewEntry();
+                switch (selection) {
+                    case 1:
+                        oldDvd.setMovieTitle(newEntry);
+                        break;
+                    case 2:
+                        oldDvd.setReleaseDate(newEntry);
+                        break;
+                    case 3:
+                        oldDvd.setmPAArating(newEntry);
+                        break;
+                    case 4:
+                        oldDvd.setDirectorName(newEntry);
+                        break;
+                    case 5:
+                        oldDvd.setStudioName(newEntry);
+                        break;
+                    case 6:
+                        oldDvd.setUserNote(newEntry);
+                        break;
+                    case 7:
+                        keepGoing = false;
+                        break;
+                }
             }
         }
-
+        view.editDvdMessage(isInDb);
     }
+
+
 
     private void listAllDvds() {
         view.listDvdsBanner();
@@ -111,6 +116,10 @@ public class DvdLibController {
         String movieTitle = view.getDvdTitleChoice();
         Dvd currentDvd = dao.accessDvdInfo(movieTitle);
         view.showDvdInfo(currentDvd);
+    }
+
+    private Boolean isInDbCheck(Dvd oldDvd){
+        return oldDvd != null;
     }
 
 }

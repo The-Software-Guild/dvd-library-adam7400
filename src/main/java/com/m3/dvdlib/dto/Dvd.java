@@ -81,14 +81,13 @@ public class Dvd {
 
     @Override
     public String toString() {
-        return "Dvd{" +
-                "movieTitle='" + movieTitle + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
-                ", mPAArating='" + mPAArating + '\'' +
-                ", directorName='" + directorName + '\'' +
-                ", studioName='" + studioName + '\'' +
-                ", userNote='" + userNote + '\'' +
-                '}';
+        return "\nMovie title: " + movieTitle +
+                "\nRelease date: " + releaseDate +
+                "\nMPAA rating: " + mPAArating +
+                "\nDirector: " + directorName +
+                "\nStudio: " + studioName +
+                "\nUser note: " + userNote;
+
     }
 }
 

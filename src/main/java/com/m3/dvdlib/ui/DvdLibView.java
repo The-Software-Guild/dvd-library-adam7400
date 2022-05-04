@@ -8,13 +8,16 @@ public class DvdLibView {
     private UserIO ui = new UserIOConsoleImpl();
 
     public int printMenuAndGetSelection() {
+        printStars();
+        ui.print("DVD LIBRARY");
+        printStars();
         ui.print("1. Add DVD");
         ui.print("2. Remove DVD");
-        ui.print("3. Edit DVD info");
-        ui.print("4. List DVDs");
-        ui.print("5. Display DVD information");
-        // ui.print("7. Load DVD library from a file");
-        ui.print("8. Exit");
+        ui.print("3. Display DVD information");
+        ui.print("4. Edit DVD info");
+        ui.print("5. List DVDs");
+        // ui.print("6. Load DVD library from a file");
+        ui.print("7. Exit");
 
         return ui.readInt("Please choose from above: ", 1, 8);
     }
@@ -37,14 +40,14 @@ public class DvdLibView {
     }
 
     public int printEditDvdInfoMenu() {
-        ui.print("*** EDIT DVD INFO ***");
+        ui.print("*** EDITING MODE ***");
         ui.print("1. Title");
         ui.print("2. Release date");
         ui.print("3. MPAA rating");
         ui.print("4. Director");
         ui.print("5. Studio name");
         ui.print("6. User note");
-        ui.print("7. Exit");
+        ui.print("7. Exit editing mode");
         return ui.readInt("Please choose from above: ", 1, 7);
     }
 
@@ -58,7 +61,7 @@ public class DvdLibView {
                     currentDvd.getMovieTitle());
             ui.print(dvdInfo);
         }
-        ui.readString("Please hit enter to continue.");
+        hitEnterMessage();
     }
 
     public void showDvdInfo(Dvd currentDvd) {
@@ -67,7 +70,7 @@ public class DvdLibView {
         } else {
             ui.print("No such DVD in the database.");
         }
-        ui.readString("Please hit enter to continue.");
+        hitEnterMessage();
     }
 
 
@@ -90,21 +93,47 @@ public class DvdLibView {
     }
 
     public void addDvdMessage(Boolean isInDb) {
-        ui.print("*****");
+
         if (!isInDb) {
-            ui.print("The DVD has been successfully added to the database.");
+            ui.print("\n*** UPLOAD SUCCESS ***");
         }
         else {
-            ui.print("The DVD is already on the database.");
+            ui.print("\n*** ALREADY UP ***");
         }
-        ui.print("*****");
+        hitEnterMessage();
+
     }
 
-    public void removeDvdMessage() {
-        ui.print("*****");
-        ui.print("The DVD has been successfully removed from the database.");
-        ui.print("*****");
+    public void removeDvdMessage(Boolean isInDb) {
+        if (isInDb) {
+            ui.print("\n*** REMOVAL SUCCESS ***");
+        }
+        else {
+            ui.print("\n*** NOT IN DATABASE ***");
+        }
+        hitEnterMessage();
+
     }
+
+    public void editDvdMessage(Boolean isInDb) {
+        if (isInDb) {
+            ui.print("\n*** EDIT SUCCESS ***");
+        }
+        else {
+            ui.print("\n*** NOT IN DATABASE ***");
+        }
+        hitEnterMessage();
+    }
+
+    private void hitEnterMessage(){
+        ui.readString("\nHit ENTER to proceed");
+
+    }
+
+    private void printStars(){
+        ui.print("********************");
+    }
+
 
 
 }
