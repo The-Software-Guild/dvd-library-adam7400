@@ -3,6 +3,7 @@ package com.m3.dvdlib.ui;
 import com.m3.dvdlib.dto.Dvd;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class DvdLibView {
     private UserIO ui = new UserIOConsoleImpl();
@@ -76,7 +77,6 @@ public class DvdLibView {
         }
         hitEnterMessage();
     }
-
 
     // BANNERS AND SUCCESS MESSAGES
 

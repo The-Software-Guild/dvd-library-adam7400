@@ -131,7 +131,7 @@ public class DvdLibController {
     }
 
     private void readFromFile(){
-        Scanner scanner = ui.readFile("movieDb.txt");
+        Scanner scanner = ui.readFile("movieDb.txt"); // some of these lines might belong elsewhere
         while (scanner.hasNextLine()) {
             String movieTitle = scanner.nextLine();
             String releaseDate = scanner.nextLine();
@@ -141,8 +141,6 @@ public class DvdLibController {
             Dvd newDvd = new Dvd(movieTitle, releaseDate, mPAArating, directorName, studioName);
             dao.addDvd(newDvd);
         }
-
-
     }
 
     private Boolean isInDbCheck(Dvd oldDvd) {
