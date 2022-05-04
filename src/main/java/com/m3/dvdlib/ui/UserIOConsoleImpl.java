@@ -128,7 +128,7 @@ public class UserIOConsoleImpl implements UserIO {
     @Override
     public void readFile(){
         try {
-            Scanner sc = new Scanner(new BufferedReader(new FileReader("movieDb.txt")));
+            Scanner sc = new Scanner(new BufferedReader(new FileReader("mvieDb.txt")));
             while (sc.hasNextLine()) {
                 String currentLine = sc.nextLine();
                 System.out.println(currentLine);

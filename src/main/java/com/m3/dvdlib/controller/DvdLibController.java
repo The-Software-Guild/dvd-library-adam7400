@@ -26,7 +26,6 @@ public class DvdLibController {
                     addDvd();
                     break;
                 case 2:
-                    ui.readFile();
                     removeDvd();
                     break;
                 case 3:
