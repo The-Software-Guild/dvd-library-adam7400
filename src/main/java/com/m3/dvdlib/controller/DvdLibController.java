@@ -46,6 +46,7 @@ public class DvdLibController {
             }
 
         }
+        view.goodbyeMessage();
     }
 
     private void addDvd() {
@@ -74,33 +75,44 @@ public class DvdLibController {
         if (isInDb) {
             while (keepGoing) {
                 int selection = view.printEditDvdInfoMenu();
-                String newEntry = view.getNewEntry();
                 switch (selection) {
                     case 1:
+                        dao.removeDvd(dvdTitleChoice);
+                        String newEntry = view.getNewEntry();
                         oldDvd.setMovieTitle(newEntry);
+                        dao.addDvd(oldDvd);     // movie title is key
+                        view.editSuccessMessage();
                         break;
                     case 2:
-                        oldDvd.setReleaseDate(newEntry);
+                        oldDvd.setReleaseDate(view.getNewEntry());
+                        view.editSuccessMessage();
                         break;
                     case 3:
-                        oldDvd.setmPAArating(newEntry);
+                        oldDvd.setmPAArating(view.getNewEntry());
+                        view.editSuccessMessage();
                         break;
                     case 4:
-                        oldDvd.setDirectorName(newEntry);
+                        oldDvd.setDirectorName(view.getNewEntry());
+                        view.editSuccessMessage();
                         break;
                     case 5:
-                        oldDvd.setStudioName(newEntry);
+                        oldDvd.setStudioName(view.getNewEntry());
+                        view.editSuccessMessage();
                         break;
                     case 6:
-                        oldDvd.setUserNote(newEntry);
+                        oldDvd.setUserNote(view.getNewEntry());
+                        view.editSuccessMessage();
                         break;
                     case 7:
                         keepGoing = false;
+                        view.leaveEditMessage();
                         break;
                 }
             }
         }
-        view.editDvdMessage(isInDb);
+        else {
+            view.notInDbMessage();
+        }
     }
 
 

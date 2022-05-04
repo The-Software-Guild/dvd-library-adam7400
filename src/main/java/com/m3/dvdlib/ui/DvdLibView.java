@@ -22,6 +22,10 @@ public class DvdLibView {
         return ui.readInt("Please choose from above: ", 1, 8);
     }
 
+    public void goodbyeMessage(){
+        ui.print("\n*** GOODBYE ***");
+    }
+
     public String getDvdTitleChoice() {
         return ui.readString("Please enter the DVD title");
     }
@@ -77,19 +81,19 @@ public class DvdLibView {
     // BANNERS AND SUCCESS MESSAGES
 
     public void addDvdBanner() {
-        ui.print("*** ADDING DVD ***");
+        ui.print("\n*** ADDING DVD ***");
     }
 
     public void removeDvdBanner() {
-        ui.print("*** REMOVING DVD ***");
+        ui.print("\n*** REMOVING DVD ***");
     }
 
     public void listDvdsBanner() {
-        ui.print("*** DVD LIST ***");
+        ui.print("\n*** DVD LIST ***");
     }
 
     public void dvdInfoBanner() {
-        ui.print("*** DVD INFO ***");
+        ui.print("\n*** DVD INFO ***");
     }
 
     public void addDvdMessage(Boolean isInDb) {
@@ -107,21 +111,26 @@ public class DvdLibView {
     public void removeDvdMessage(Boolean isInDb) {
         if (isInDb) {
             ui.print("\n*** REMOVAL SUCCESS ***");
+            hitEnterMessage();
         }
         else {
-            ui.print("\n*** NOT IN DATABASE ***");
+            notInDbMessage();
         }
-        hitEnterMessage();
 
     }
 
-    public void editDvdMessage(Boolean isInDb) {
-        if (isInDb) {
-            ui.print("\n*** EDIT SUCCESS ***");
-        }
-        else {
-            ui.print("\n*** NOT IN DATABASE ***");
-        }
+    public void leaveEditMessage(){
+        ui.print("\n*** LEAVING EDIT MODE ***");
+        hitEnterMessage();
+    }
+
+    public void editSuccessMessage(){
+        ui.print("\n*** EDIT SUCCESS ***");
+        hitEnterMessage();
+    }
+
+    public void notInDbMessage(){
+        ui.print("\n*** NOT IN DATABASE ***");
         hitEnterMessage();
     }
 
