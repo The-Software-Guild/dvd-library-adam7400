@@ -20,7 +20,7 @@ public class DvdLibController {
         int menuSelection = 0;
 
         while (keepGoing) {
-            menuSelection = view.printMenuAndGetSelection();
+            menuSelection = view.mainMenu();
 
             switch (menuSelection) {
                 case 1:
@@ -30,19 +30,19 @@ public class DvdLibController {
                     removeDvd();
                     break;
                 case 3:
-                    printDvdInfo();
+                    searchDvd();
                     break;
                 case 4:
                     editDvdInfo();
                     break;
                 case 5:
-                    listAllDvds();
+                    listDvds();
                     break;
                 case 6:
-                    addFromFile();
+                    loadLibrary();
                     break;
                 case 7:
-                    addToFile();
+                    saveToFile();
                     keepGoing = false;
                     break;
 
@@ -54,7 +54,7 @@ public class DvdLibController {
 
     private void addDvd() {
         view.addDvdBanner();
-        Dvd newDvd = view.getNewDvdInfo();
+        Dvd newDvd = view.enterNewDvdInfo();
         Dvd oldDvd = dao.accessDvdInfo(newDvd.getMovieTitle());
         Boolean isInDb = newDvd.equals(oldDvd);
         if (!isInDb) dao.addDvd(newDvd);
@@ -63,7 +63,7 @@ public class DvdLibController {
 
     private void removeDvd() {
         view.removeDvdBanner();
-        String dvdTitleChoice = view.getDvdTitleChoice();
+        String dvdTitleChoice = view.enterMovieTitle();
         Dvd oldDvd = dao.accessDvdInfo(dvdTitleChoice);
         Boolean isInDb = isInDbCheck(oldDvd);
         if (isInDb) dao.removeDvd(dvdTitleChoice);
@@ -72,13 +72,13 @@ public class DvdLibController {
 
     private void editDvdInfo() {
         Boolean keepGoing = true;
-        String dvdTitleChoice = view.getDvdTitleChoice();
+        String dvdTitleChoice = view.enterMovieTitle();
         Dvd oldDvd = dao.accessDvdInfo(dvdTitleChoice);
         Boolean isInDb = isInDbCheck(oldDvd);
         if (isInDb) {
             while (keepGoing) {
-                int selection = view.printEditDvdInfoMenu();
-                switch (selection) {
+                int menuSelection = view.editMenu();
+                switch (menuSelection) {
                     case 1:
                         dao.removeDvd(dvdTitleChoice);
                         String newEntry = view.getNewEntry();
@@ -118,28 +118,22 @@ public class DvdLibController {
     }
 
 
-    private void listAllDvds() {
+    private void listDvds() {
         view.listDvdsBanner();
-        List<Dvd> dvdList = dao.listAllDvdTitles();
-        view.displayDvdList(dvdList);
+        List<Dvd> dvdList = dao.listAllDvds();
+        view.dvdList(dvdList);
     }
 
-    private void printDvdInfo() {
+    private void searchDvd() {
         view.dvdInfoBanner();
-        String dvdTitleChoice = view.getDvdTitleChoice();
+        String dvdTitleChoice = view.enterMovieTitle();
         Dvd currentDvd = dao.accessDvdInfo(dvdTitleChoice);
         Boolean isInDb = isInDbCheck(currentDvd);
-        view.showDvdInfo(currentDvd, isInDb);
+        view.dvdInfo(currentDvd, isInDb);
     }
 
-    private void addFromFile(){
-        //String filePath = view.typeInFilePath();
-        Scanner reader = dao.readFromDb("movieDb.txt"); // some of these lines might belong elsewhere
-        addAllToLibrary(reader);
-        view.libraryLoadedMessage();
-    }
-
-    private void addAllToLibrary(Scanner scanner){
+    private void loadLibrary() {
+        Scanner scanner = dao.readFromFile("movieDb.txt"); // some of these lines might belong elsewhere
         while (scanner.hasNextLine()) {
             String movieTitle = scanner.nextLine();
             String releaseDate = scanner.nextLine();
@@ -151,13 +145,13 @@ public class DvdLibController {
             newDvd.setUserNote(userNote);
             dao.addDvd(newDvd);
         }
-
+        view.libraryLoadedMessage();
     }
 
-    private void addToFile(){
+    private void saveToFile() {
         String filePath = "movieDb.txt";
-        dao.writeToDb(filePath);
-        view.fileSavedMessage(filePath);
+        dao.writeToFile(filePath);
+        view.librarySavedMessage(filePath);
 
     }
 

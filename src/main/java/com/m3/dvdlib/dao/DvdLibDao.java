@@ -11,18 +11,13 @@ public interface DvdLibDao {
 
     Dvd removeDvd(String movieTitle);
 
-    List<Dvd> listAllDvdTitles();
+    List<Dvd> listAllDvds();
 
     Dvd accessDvdInfo(String movieTitle);
 
-    Scanner readFromDb(String filePath);
+    Scanner readFromFile(String filePath);
 
-    void writeToDb(String filePath);
-
-
-
-
-
+    void writeToFile(String filePath);
 
 
 }

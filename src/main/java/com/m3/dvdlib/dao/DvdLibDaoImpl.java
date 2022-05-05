@@ -21,7 +21,7 @@ public class DvdLibDaoImpl implements DvdLibDao {
     }
 
     @Override
-    public List<Dvd> listAllDvdTitles() {
+    public List<Dvd> listAllDvds() {
         return new TreeList<Dvd>(dvds.values());
     }
 
@@ -31,7 +31,7 @@ public class DvdLibDaoImpl implements DvdLibDao {
     }
 
     @Override
-    public Scanner readFromDb(String filePath) {
+    public Scanner readFromFile(String filePath) {
         try {
             Scanner sc = new Scanner(new BufferedReader(new FileReader(filePath)));
             return sc;
@@ -42,10 +42,10 @@ public class DvdLibDaoImpl implements DvdLibDao {
     }
 
     @Override
-    public void writeToDb(String filePath) {
+    public void writeToFile(String filePath) {
         try {
             PrintWriter out = new PrintWriter(new FileWriter(filePath));
-            for (Dvd dvd : dvds.values()){
+            for (Dvd dvd : dvds.values()) {
                 out.println(dvd.getMovieTitle());
                 out.println(dvd.getReleaseDate());
                 out.println(dvd.getmPAArating());
@@ -56,7 +56,7 @@ public class DvdLibDaoImpl implements DvdLibDao {
             out.flush();
             out.close();
         } catch (Exception e) {
-            System.out.println("Stuff");
+            System.out.println("An exception has occurred.");
         }
 
 
