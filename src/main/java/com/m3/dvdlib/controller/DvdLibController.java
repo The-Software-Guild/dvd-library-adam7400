@@ -1,6 +1,5 @@
 package com.m3.dvdlib.controller;
 
-// test commit to new branch
 import com.m3.dvdlib.dao.DvdLibDao;
 import com.m3.dvdlib.dao.DvdLibDaoImpl;
 import com.m3.dvdlib.dto.Dvd;
@@ -40,10 +39,8 @@ public class DvdLibController {
                     listDvds();
                     break;
                 case 6:
-                    loadLibrary();
                     break;
                 case 7:
-                    saveToFile();
                     keepGoing = false;
                     break;
 
@@ -133,28 +130,6 @@ public class DvdLibController {
         view.dvdInfo(currentDvd, isInDb);
     }
 
-    private void loadLibrary() {
-        Scanner scanner = dao.readFromFile("movieDb.txt"); // some of these lines might belong elsewhere
-        while (scanner.hasNextLine()) {
-            String movieTitle = scanner.nextLine();
-            String releaseDate = scanner.nextLine();
-            String mPArating = scanner.nextLine();
-            String directorName = scanner.nextLine();
-            String studioName = scanner.nextLine();
-            String userNote = scanner.nextLine();
-            Dvd newDvd = new Dvd(movieTitle, releaseDate, mPArating, directorName, studioName);
-            newDvd.setUserNote(userNote);
-            dao.addDvd(newDvd);
-        }
-        view.libraryLoadedMessage();
-    }
-
-    private void saveToFile() {
-        String filePath = "movieDb.txt";
-        dao.writeToFile(filePath);
-        view.librarySavedMessage(filePath);
-
-    }
 
     private Boolean isInDbCheck(Dvd oldDvd) { // should this one belong to dao?
         return oldDvd != null;
