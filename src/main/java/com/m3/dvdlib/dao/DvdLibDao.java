@@ -17,7 +17,7 @@ public interface DvdLibDao {
 
     Scanner readFromDb(String filePath);
 
-    void writeToDb(String dvdInfo);
+    void writeToDb(String filePath);
 
 
 

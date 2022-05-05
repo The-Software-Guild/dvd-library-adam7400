@@ -3,9 +3,7 @@ package com.m3.dvdlib.dao;
 import com.m3.dvdlib.dto.Dvd;
 import org.apache.commons.collections4.list.TreeList;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class DvdLibDaoImpl implements DvdLibDao {
@@ -44,7 +42,23 @@ public class DvdLibDaoImpl implements DvdLibDao {
     }
 
     @Override
-    public void writeToDb(String dvdInfo) {
+    public void writeToDb(String filePath) {
+        try {
+            PrintWriter out = new PrintWriter(new FileWriter(filePath));
+            for (Dvd dvd : dvds.values()){
+                out.println(dvd.getMovieTitle());
+                out.println(dvd.getReleaseDate());
+                out.println(dvd.getmPAArating());
+                out.println(dvd.getDirectorName());
+                out.println(dvd.getStudioName());
+                out.println(dvd.getUserNote());
+            }
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            System.out.println("Stuff");
+        }
+
 
     }
 }

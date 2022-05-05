@@ -42,6 +42,7 @@ public class DvdLibController {
                     addFromFile();
                     break;
                 case 7:
+                    addToFile();
                     keepGoing = false;
                     break;
 
@@ -132,8 +133,8 @@ public class DvdLibController {
     }
 
     private void addFromFile(){
-        String filePath = view.typeInFilePath();
-        Scanner reader = dao.readFromDb(filePath); // some of these lines might belong elsewhere
+        //String filePath = view.typeInFilePath();
+        Scanner reader = dao.readFromDb("movieDb.txt"); // some of these lines might belong elsewhere
         addAllToLibrary(reader);
         view.libraryLoadedMessage();
     }
@@ -145,9 +146,18 @@ public class DvdLibController {
             String mPAArating = scanner.nextLine();
             String directorName = scanner.nextLine();
             String studioName = scanner.nextLine();
+            String userNote = scanner.nextLine();
             Dvd newDvd = new Dvd(movieTitle, releaseDate, mPAArating, directorName, studioName);
+            newDvd.setUserNote(userNote);
             dao.addDvd(newDvd);
         }
+
+    }
+
+    private void addToFile(){
+        String filePath = "movieDb.txt";
+        dao.writeToDb(filePath);
+        view.fileSavedMessage(filePath);
 
     }
 

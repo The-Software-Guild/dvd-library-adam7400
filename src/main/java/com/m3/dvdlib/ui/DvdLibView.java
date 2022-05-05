@@ -140,6 +140,10 @@ public class DvdLibView {
         hitEnterMessage();
     }
 
+    public void fileSavedMessage(String filePath){
+        ui.print("\nThe library has been saved to " + filePath);
+    }
+
     public void notInDbMessage(){
         ui.print("\n*** NOT IN DATABASE ***");
         hitEnterMessage();
