@@ -1,29 +1,22 @@
 package com.m3.dvdlib.dto;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Dvd {
     private String movieTitle;
-    private String releaseDate;
+    private LocalDate releaseDate;
     private String mPArating;
     private String directorName;
     private String studioName;
     private String userNote;
 
 
-    public Dvd(String movieTitle, String releaseDate, String mPArating, String directorName, String studioName) {
-        this.movieTitle = movieTitle;
-        this.releaseDate = releaseDate;
-        this.mPArating = mPArating;
-        this.directorName = directorName;
-        this.studioName = studioName;
-    }
-
     public String getMovieTitle() {
         return movieTitle;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
@@ -47,8 +40,15 @@ public class Dvd {
         this.movieTitle = movieTitle;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setReleaseDate(String date) {
+        String[] arr =  date.split("/");
+        Integer year = Integer.valueOf(arr[2]);
+        Integer month = Integer.valueOf(arr[1]);
+        Integer day = Integer.valueOf(arr[0]);
+        this.releaseDate = LocalDate.of(year, month, day);
+        // catch the exception
+
+
     }
 
     public void setmPAArating(String mPArating) {
