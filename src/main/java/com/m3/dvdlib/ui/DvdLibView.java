@@ -31,11 +31,11 @@ public class DvdLibView {
     public Dvd enterNewDvdInfo() {
         String movieTitle = ui.readString("Please enter movie title:");
         String releaseDate = ui.readString("Please enter release date:");
-        String mPAArating = ui.readString("Please enter MPAA rating:");
+        String mPArating = ui.readString("Please enter MPAA rating:");
         String directorName = ui.readString("Please enter director name:");
         String studioName = ui.readString("Please enter studio name:");
         String userNote = ui.readString("Add user note:");
-        Dvd newDvd = new Dvd(movieTitle, releaseDate, mPAArating, directorName, studioName);
+        Dvd newDvd = new Dvd(movieTitle, releaseDate, mPArating, directorName, studioName);
         newDvd.setUserNote(userNote);
         return newDvd;
     }

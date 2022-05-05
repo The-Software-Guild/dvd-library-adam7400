@@ -137,11 +137,11 @@ public class DvdLibController {
         while (scanner.hasNextLine()) {
             String movieTitle = scanner.nextLine();
             String releaseDate = scanner.nextLine();
-            String mPAArating = scanner.nextLine();
+            String mPArating = scanner.nextLine();
             String directorName = scanner.nextLine();
             String studioName = scanner.nextLine();
             String userNote = scanner.nextLine();
-            Dvd newDvd = new Dvd(movieTitle, releaseDate, mPAArating, directorName, studioName);
+            Dvd newDvd = new Dvd(movieTitle, releaseDate, mPArating, directorName, studioName);
             newDvd.setUserNote(userNote);
             dao.addDvd(newDvd);
         }

@@ -5,16 +5,16 @@ import java.util.Objects;
 public class Dvd {
     private String movieTitle;
     private String releaseDate;
-    private String mPAArating;
+    private String mPArating;
     private String directorName;
     private String studioName;
     private String userNote;
 
 
-    public Dvd(String movieTitle, String releaseDate, String mPAArating, String directorName, String studioName) {
+    public Dvd(String movieTitle, String releaseDate, String mPArating, String directorName, String studioName) {
         this.movieTitle = movieTitle;
         this.releaseDate = releaseDate;
-        this.mPAArating = mPAArating;
+        this.mPArating = mPArating;
         this.directorName = directorName;
         this.studioName = studioName;
     }
@@ -28,7 +28,7 @@ public class Dvd {
     }
 
     public String getmPAArating() {
-        return mPAArating;
+        return mPArating;
     }
 
     public String getDirectorName() {
@@ -51,8 +51,8 @@ public class Dvd {
         this.releaseDate = releaseDate;
     }
 
-    public void setmPAArating(String mPAArating) {
-        this.mPAArating = mPAArating;
+    public void setmPAArating(String mPArating) {
+        this.mPArating = mPArating;
     }
 
     public void setDirectorName(String directorName) {
@@ -74,7 +74,7 @@ public class Dvd {
         Dvd dvd = (Dvd) o;
         return Objects.equals(movieTitle, dvd.movieTitle) &&
                 Objects.equals(releaseDate, dvd.releaseDate) &&
-                Objects.equals(mPAArating, dvd.mPAArating) &&
+                Objects.equals(mPArating, dvd.mPArating) &&
                 Objects.equals(directorName, dvd.directorName) &&
                 Objects.equals(studioName, dvd.studioName);
     }
@@ -83,7 +83,7 @@ public class Dvd {
     public String toString() {
         return "\nMovie title: " + movieTitle +
                 "\nRelease date: " + releaseDate +
-                "\nMPAA rating: " + mPAArating +
+                "\nMPAA rating: " + mPArating +
                 "\nDirector: " + directorName +
                 "\nStudio: " + studioName +
                 "\nUser note: " + userNote;
