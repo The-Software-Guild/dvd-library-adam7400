@@ -31,7 +31,7 @@ public class UserIOConsoleImpl implements UserIO {
     @Override
     public String readString(String msgPrompt) {
         System.out.println(msgPrompt);
-        return console.nextLine();
+        return console.nextLine().strip();
     }
 
     @Override
