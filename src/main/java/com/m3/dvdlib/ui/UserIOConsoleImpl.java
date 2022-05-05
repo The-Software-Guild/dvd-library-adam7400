@@ -125,15 +125,5 @@ public class UserIOConsoleImpl implements UserIO {
         return result;
     }
 
-    @Override
-    public Scanner readFile(String fileName) {
-        try {
-            Scanner sc = new Scanner(new BufferedReader(new FileReader(fileName)));
-            return sc;
-        } catch (IOException e) {
-            System.out.println("File not found");
-        }
-        return null;
-    }
 
 }

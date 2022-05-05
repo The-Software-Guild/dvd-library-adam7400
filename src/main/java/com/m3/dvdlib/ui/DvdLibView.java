@@ -80,6 +80,10 @@ public class DvdLibView {
         hitEnterMessage();
     }
 
+    public String typeInFilePath(){
+        return ui.readString("Please type in file path: ");
+    }
+
 
     // BANNERS AND MESSAGES
     public void addDvdBanner() {

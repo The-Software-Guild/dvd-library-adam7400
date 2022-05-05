@@ -23,8 +23,6 @@ public interface UserIO {
 
     String readString(String prompt);
 
-    Scanner readFile(String fileName);
-
 
 
 }

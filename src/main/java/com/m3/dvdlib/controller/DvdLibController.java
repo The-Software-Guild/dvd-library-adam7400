@@ -39,7 +39,7 @@ public class DvdLibController {
                     listAllDvds();
                     break;
                 case 6:
-                    readFromFile();
+                    addFromFile();
                     break;
                 case 7:
                     keepGoing = false;
@@ -131,8 +131,14 @@ public class DvdLibController {
         view.showDvdInfo(currentDvd, isInDb);
     }
 
-    private void readFromFile(){
-        Scanner scanner = ui.readFile("movieDb.txt"); // some of these lines might belong elsewhere
+    private void addFromFile(){
+        String filePath = view.typeInFilePath();
+        Scanner reader = dao.readFromDb(filePath); // some of these lines might belong elsewhere
+        addAllToLibrary(reader);
+        view.libraryLoadedMessage();
+    }
+
+    private void addAllToLibrary(Scanner scanner){
         while (scanner.hasNextLine()) {
             String movieTitle = scanner.nextLine();
             String releaseDate = scanner.nextLine();
@@ -142,7 +148,7 @@ public class DvdLibController {
             Dvd newDvd = new Dvd(movieTitle, releaseDate, mPAArating, directorName, studioName);
             dao.addDvd(newDvd);
         }
-        view.libraryLoadedMessage();
+
     }
 
     private Boolean isInDbCheck(Dvd oldDvd) { // should this one belong to dao?

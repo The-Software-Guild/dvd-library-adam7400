@@ -5,6 +5,7 @@ import org.apache.commons.collections4.list.TreeList;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class DvdLibDaoImpl implements DvdLibDao {
@@ -31,7 +32,21 @@ public class DvdLibDaoImpl implements DvdLibDao {
         return dvds.get(movieTitle);
     }
 
+    @Override
+    public Scanner readFromDb(String filePath) {
+        try {
+            Scanner sc = new Scanner(new BufferedReader(new FileReader(filePath)));
+            return sc;
+        } catch (Exception e) {
+            System.out.println("File not found");
+        }
+        return null;
+    }
 
+    @Override
+    public void writeToDb(String dvdInfo) {
 
-
+    }
 }
+
+
