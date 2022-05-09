@@ -15,9 +15,7 @@ public interface DvdLibDao {
 
     Dvd accessDvdInfo(String movieTitle);
 
-    Scanner readFromFile(String filePath);
-
-    void writeToFile(String filePath);
+    Dvd unmarshallDvd(String dvdAsText);
 
     List<Dvd> lastNyearsMovies(int n);
 

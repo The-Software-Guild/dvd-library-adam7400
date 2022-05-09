@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 public class DvdLibDaoImpl implements DvdLibDao {
 
     private Map<String, Dvd> dvds = new HashMap<>(); // map for searching dvd by title
+    public static final String MOVIEDB_FILE = "movieDb.txt";
+    public static final String DELIMITER = "::";
 
     @Override
     public void addDvd(Dvd dvd) {
@@ -32,33 +34,16 @@ public class DvdLibDaoImpl implements DvdLibDao {
     }
 
     @Override
-    public Scanner readFromFile(String filePath) {
-        try {
-            Scanner sc = new Scanner(new BufferedReader(new FileReader(filePath)));
-            return sc;
-        } catch (Exception e) {
-            System.out.println("File not found");
-        }
-        return null;
-    }
-
-    @Override
-    public void writeToFile(String filePath) {
-        try {
-            PrintWriter out = new PrintWriter(new FileWriter(filePath));
-            for (Dvd dvd : dvds.values()) {
-                out.println(dvd.getMovieTitle());
-                out.println(dvd.getReleaseDate());
-                out.println(dvd.getmPAArating());
-                out.println(dvd.getDirectorName());
-                out.println(dvd.getStudioName());
-                out.println(dvd.getUserNote());
-            }
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            System.out.println("An exception has occurred.");
-        }
+    public Dvd unmarshallDvd(String dvdAsText){
+        String[] dvdTokens = dvdAsText.split(DELIMITER);
+        String movieTitle = dvdTokens[0];
+        String mpa = dvdTokens[1];
+        String date = dvdTokens[2];
+        String director = dvdTokens[3];
+        String studio = dvdTokens[4];
+        Dvd dvdFromFile = new Dvd(movieTitle, mpa, date, director, studio);
+        dvdFromFile.setUserNote(dvdTokens[5]);
+        return dvdFromFile;
     }
 
     @Override
@@ -95,6 +80,8 @@ public class DvdLibDaoImpl implements DvdLibDao {
     public double avgNoOfNotes() {
         return 0;
     }
+
+
 }
 
 
