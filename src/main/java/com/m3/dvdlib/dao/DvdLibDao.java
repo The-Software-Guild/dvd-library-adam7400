@@ -19,5 +19,19 @@ public interface DvdLibDao {
 
     void writeToFile(String filePath);
 
+    List<Dvd> lastNyearsMovies(int n);
+
+    List<Dvd> moviesWithMPA(String mpa);
+
+    List<Dvd> moviesWithDirector(String directorName);
+
+    double avgAgeOfMovies();
+
+    String oldestMovie();
+
+    double avgNoOfNotes();
+
+
+
 
 }

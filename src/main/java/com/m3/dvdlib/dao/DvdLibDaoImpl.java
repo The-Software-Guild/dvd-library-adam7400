@@ -5,6 +5,7 @@ import org.apache.commons.collections4.list.TreeList;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DvdLibDaoImpl implements DvdLibDao {
 
@@ -58,8 +59,41 @@ public class DvdLibDaoImpl implements DvdLibDao {
         } catch (Exception e) {
             System.out.println("An exception has occurred.");
         }
+    }
 
+    @Override
+    public List<Dvd> lastNyearsMovies(int n) {
+        return null;
+    }
 
+    @Override
+    public List<Dvd> moviesWithMPA(String mpa) {
+        return dvds.values().stream()
+                .filter((dvd) -> dvd.getmPAArating().equals(mpa))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Dvd> moviesWithDirector(String directorName) {
+        return dvds.values().stream()
+                .filter((dvd) -> dvd.getDirectorName().equals(directorName))
+                .collect(Collectors.toList());
+    }
+
+    // use map method, need to change the date format to date - so you can use get year etc.
+    @Override
+    public double avgAgeOfMovies() {
+        return 0;
+    }
+
+    @Override
+    public String oldestMovie() {
+        return null;
+    }
+
+    @Override
+    public double avgNoOfNotes() {
+        return 0;
     }
 }
 
