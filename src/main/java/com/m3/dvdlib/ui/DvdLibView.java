@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DvdLibView {
-    private UserIO ui = new UserIOConsoleImpl();
+    private UserIO ui;
+
+    public DvdLibView(UserIO ui){
+        this.ui = ui;
+    }
 
     public int mainMenu() {
         ui.print("\n");

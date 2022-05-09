@@ -11,9 +11,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DvdLibController {
-    private UserIO ui = new UserIOConsoleImpl();
-    private DvdLibView view = new DvdLibView();
-    private DvdLibDao dao = new DvdLibDaoImpl();
+    private DvdLibView view;
+    private DvdLibDao dao;
+
+    public DvdLibController(DvdLibView view, DvdLibDao dao) {
+        this.view = view;
+        this.dao = dao;
+    }
 
 
     public void run() {
