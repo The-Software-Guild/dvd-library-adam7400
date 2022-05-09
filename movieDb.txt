@@ -1,2 +1,7 @@
 The Godfather::1972-03-14::15::Francis Ford Coppola::Paramount Pictures
-Forrest Gump::1994/06/23::12::Robert Zemeckis::Paramount Pictures
+Forrest Gump::1994-06-23::12::Robert Zemeckis::Paramount Pictures
+The Rush::2013-09-02::15::Ron Howard::Cross Creek Pictures
+Apollo 13::1995-06-30::PG::Ron Howard::Universal Pictures
+The Big Short::2015-11-15::15::Adam McKay::Regency Enterprises 
+
+
